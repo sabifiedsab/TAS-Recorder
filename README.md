@@ -12,11 +12,21 @@ See the [CHANGELOG file](CHANGELOG.md) for details on version changes.
 - Player - Play recorded file with set playback speed
 
 ## Getting started
-Since this isn't published yet on PyPI (Python Package Index) clone this repo and run
+
+### For users
+To install it, run this command in the terminal
 ```
-pip install .
+pip install tas-recorder
 ```
 That's it for installing it!
+
+### For Developers:
+If you're interested in running tests or contributing to the development:
+1. Clone the repository:
+`git clone https://github.com/sabifiedsab/TAS-Recorder.git`
+2. Navigate to the cloned directory and install the package in editable mode:
+`pip install -e`
+3. Run tests as described in the [Testing files](#testing-files) section.
 
 ### Testing files
 Inside the folder `/tests/` there is a file called `test.py`
