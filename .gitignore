@@ -1,5 +1,9 @@
-*.zip
+# Python build artifacts
 __pycache__/
-build
-dist
-*.egg-info
+*.pyc
+*.pyo
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
