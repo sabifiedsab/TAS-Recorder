@@ -4,6 +4,7 @@ import time
 from pynput.mouse import Controller as MouseController, Button as MouseButton
 from pynput.keyboard import Controller as KeyboardController, Key
 from .constants import PLAYBACK_SPEED, RECORDING_SPEED, FILE_NAME
+from .utils import get_special_key
 
 def play(filename = FILE_NAME, playback_speed = PLAYBACK_SPEED, recording_speed = RECORDING_SPEED):
     mouse = MouseController()
@@ -16,17 +17,6 @@ def play(filename = FILE_NAME, playback_speed = PLAYBACK_SPEED, recording_speed 
         speed = playback_speed / recording_speed if recording_speed > 0 else playback_speed
     else:
         speed = playback_speed
-    
-    SPECIAL_KEYS = {
-        "enter": Key.enter,
-        "space": Key.space,
-        "shift": Key.shift,
-        "left": Key.left,
-        "right": Key.right,
-        "up": Key.up,
-        "down": Key.down,
-        # "key_name": Key.key
-    }
 
     start_time = time.perf_counter()
 
@@ -56,7 +46,7 @@ def play(filename = FILE_NAME, playback_speed = PLAYBACK_SPEED, recording_speed 
                 mouse.release(mouse_button)
         else:
             key, action = data[i+1][0:-1], data[i+1][-1]
-            key = SPECIAL_KEYS.get(key, key)  # get special key
+            key = get_special_key(key)
             if action == 'd':
                 keyboard.press(key)
             else:
