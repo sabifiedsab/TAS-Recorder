@@ -11,9 +11,7 @@ def record(output_file=FILE_NAME, include_mouse = INCLUDE_MOUSE):
     last_time = start_time
     
     # Mouse event callback
-    def on_click(x, y, button, pressed):
-        if not include_mouse: return # if you're not planning to use the mouse just return
-        
+    def on_click(x, y, button, pressed):     
         nonlocal last_time
         
         current_time = time.perf_counter()
@@ -21,7 +19,7 @@ def record(output_file=FILE_NAME, include_mouse = INCLUDE_MOUSE):
         
         mouse_button = 'l' if button == MouseButton.left else 'r' if button == MouseButton.right else 'm'
         action = 'd' if pressed else 'u'
-        data.extend([elapsed_time, f"m{mouse_button}{x},{y}{action}"])
+        if include_mouse: data.extend([elapsed_time, f"m{mouse_button}{x},{y}{action}"])
 
         last_time = current_time
 
