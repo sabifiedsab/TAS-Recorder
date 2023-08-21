@@ -1,4 +1,4 @@
-from tkinter import Tk, Label, Button
+from tkinter import Tk, Label, Button, Checkbutton, IntVar
 import os
 
 from tas import recorder, playback
@@ -22,6 +22,7 @@ class TASRecorderGUI:
         self.add_title_label()
         self.add_profile_button()
         self.add_record_button()
+        self.add_include_mouse_checkbox()
         self.add_playback_button()
         self.add_quit_button()
 
@@ -69,6 +70,14 @@ class TASRecorderGUI:
     def add_record_button(self):
         self.recordButton = Button(self.win, text="Record", font=("Calibri", 15), width=10, height=1, command=self.record_button)
         self.recordButton.place(x=100, y=100)
+        
+    def add_include_mouse_checkbox(self):
+        self.includeMouseCheckboxChecked = IntVar()
+        
+        self.includeMouseCheckbox = Checkbutton(self.win, text="Include Mouse", font=("Calibri", 15), width=15, height=1, \
+            variable=self.includeMouseCheckboxChecked, onvalue=1, offvalue=0)
+        
+        self.includeMouseCheckbox.place(x=75, y=150)
     
     def add_playback_button(self):
         self.recordButton = Button(self.win, text="Playback", font=("Calibri", 15), width=10, height=1, command=self.playback_button)
@@ -80,9 +89,9 @@ class TASRecorderGUI:
         if (self.recordButtonPressed): # start record logic
             self.minimize_window()
             
-            recorder.record(self.currentFile)
+            running = recorder.record(output_file=self.currentFile, include_mouse=self.includeMouseCheckboxChecked)
             
-            while recorder.record.isDoneCalling == False:
+            while running:
                 pass
             
             self.open_window()
