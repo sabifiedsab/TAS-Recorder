@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-VERSION = '1.0.0'
+VERSION = '1.1.0'
 DESCRIPTION = "A TAS or macro recording tool."
 LONG_DESCRIPTION = "A really simple tool for creating tool-assisted content or simple macros"
 
