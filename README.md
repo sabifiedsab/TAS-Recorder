@@ -10,6 +10,7 @@ See the [CHANGELOG file](CHANGELOG.md) for details on version changes.
 
 - Recorder - Record keyboard inputs and mouse clicks and output to a JSON file
 - Player - Play recorded file with set playback speed
+- A GUI with the ability to record and play recordings on three different profiles
 
 ## Getting started
 
@@ -25,7 +26,7 @@ If you're interested in running tests or contributing to the development:
 1. Clone the repository:
 `git clone https://github.com/sabifiedsab/TAS-Recorder.git`
 2. Navigate to the cloned directory and install the package in editable mode:
-`pip install -e`
+`pip install -e .`
 3. Run tests as described in the [Testing files](#testing-files) section.
 
 ### Testing files
@@ -56,6 +57,14 @@ filename = "output_file.json"
 
 playback.play(filename)
 ```
+
+### Launch GUI
+```python
+from tas import utils
+
+app = utils.LaunchGUI()
+```
+That's it!
 
 ## Additional Parameters
 When you call `recorder.record()` you can specify the output file and if you want to also record mouse inputs
